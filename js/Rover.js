@@ -41,9 +41,28 @@ class Rover{
   }
 
   draw(x, y){
-    stroke(255);
-    fill(250);
-    circle(x+this.size/2, y+this.size/2, this.size);
+    let xCord, yCord;
+    imageMode(CENTER)
+
+    push();
+    if(this.direction.x < 0){
+      scale(-1,1);
+      xCord = (-x-this.size)+this.size/2;
+    }
+    else{
+      xCord = x+this.size/2;
+    }
+
+    translate(xCord, y + this.size/2);
+    if(this.direction.y == 1){
+      rotate(PI/2);
+    }
+    if(this.direction.y == -1){
+      rotate(-PI/2);
+    }
+
+    image(roverIcon, 0, 0, this.size, this.size);
+    pop();
   }
 
 

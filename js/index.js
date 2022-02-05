@@ -1,3 +1,6 @@
+
+
+
 //Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
 marsWorld = new Grid(15, 20, 19, 10, 40);
 
@@ -8,6 +11,7 @@ function setup(){
 function draw(){
   background(0);
   marsWorld.update();
+  
 }
 
 function keyTyped(){

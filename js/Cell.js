@@ -9,7 +9,7 @@ class Cell {
 
    draw(){
     strokeWeight(1);
-    stroke(150);
+    stroke(100);
     if(this.obstacle){
       fill(255, 0, 0);
     } else{
