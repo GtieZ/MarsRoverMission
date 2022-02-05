@@ -12,7 +12,6 @@
       for(let x=0; x<this.gridSizeX; x++){
         this.gridMap[x] = new Array(this.gridSizeY);
       }
-
       for(let x = 0; x < this.gridSizeX; x++){
         for(let y = 0; y < this.gridSizeY; y++){
           this.gridMap[x][y] = new Cell(x*this.cellSize+this.posX, y*this.cellSize+this.posY, this.cellSize, false);
@@ -31,8 +30,8 @@
         }
       }
 
-      let roverCordsX = this.gridMap[this.gridRover.posX][this.gridRover.posY].x;
-      let roverCordsY = this.gridMap[this.gridRover.posX][this.gridRover.posY].y;
+      let roverCordsX = this.gridMap[this.gridRover.position.x][this.gridRover.position.y].x;
+      let roverCordsY = this.gridMap[this.gridRover.position.x][this.gridRover.position.y].y;
       this.gridRover.draw(roverCordsX, roverCordsY);
     }
 
