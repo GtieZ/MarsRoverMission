@@ -41,13 +41,19 @@
           }
           break;
 
+        case 'L':
+          this.gridRover.changeDirection('L');
+          break;
+
+        case 'R':
+          this.gridRover.changeDirection('R');
+          break;
+
+        default:
+          alert('error!!!!!');
+          break;
       }
-
-
-
-
     }
-
 
     draw(){
       for(let x = 0; x < this.gridSizeX; x++){
