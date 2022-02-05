@@ -2,16 +2,16 @@
 
 
 //Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
-marsWorld = new Grid(15, 20, 19, 10, 40);
+marsWorld = new Grid(15, 20, 19, 14, 40);
 
 function setup(){
-  createCanvas(800, 500);
+  createCanvas(800, 600);
 }
 
 function draw(){
   background(0);
   marsWorld.update();
-  
+
 }
 
 function keyTyped(){

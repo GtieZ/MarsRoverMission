@@ -42,7 +42,7 @@ class Rover{
 
   draw(x, y){
     let xCord, yCord;
-    imageMode(CENTER)
+    imageMode(CENTER);
 
     push();
     if(this.direction.x < 0){
