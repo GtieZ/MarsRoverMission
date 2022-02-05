@@ -11,7 +11,7 @@ class Cell {
     strokeWeight(1);
     stroke(150);
     if(this.obstacle){
-      fill(255, 0, 0);
+      fill(255);
     } else{
       noFill();
     }
