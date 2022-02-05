@@ -1,6 +1,5 @@
-
-  //Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
-  marsWorld = new Grid(15, 20, 19, 10, 40);
+//Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
+marsWorld = new Grid(15, 20, 19, 10, 40);
 
 function setup(){
   createCanvas(800, 500);

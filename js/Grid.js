@@ -14,14 +14,25 @@
       }
       for(let x = 0; x < this.gridSizeX; x++){
         for(let y = 0; y < this.gridSizeY; y++){
-          this.gridMap[x][y] = new Cell(x*this.cellSize+this.posX, y*this.cellSize+this.posY, this.cellSize, false);
+
+          let blocked;
+          if(x!=0 && y!=0){
+            if(Math.random() > 0.93){
+              blocked = true;
+            } else{
+              blocked = false;
+            }
+          } else{
+            blocked = false;
+          }
+
+          this.gridMap[x][y] = new Cell(x*this.cellSize+this.posX, y*this.cellSize+this.posY, this.cellSize, blocked);
         }
       }
 
-      this.gridRover = new Rover(10, 5, this.cellSize);
-
-
+      this.gridRover = new Rover(0, 0, this.cellSize);
     }
+
 
     driveRover(instruction){
       switch(instruction.toUpperCase()){
@@ -55,13 +66,14 @@
       }
     }
 
+    
+
     draw(){
       for(let x = 0; x < this.gridSizeX; x++){
         for(let y = 0; y < this.gridSizeY; y++){
           this.gridMap[x][y].draw();
         }
       }
-
       let roverCordsX = this.gridMap[this.gridRover.position.x][this.gridRover.position.y].x;
       let roverCordsY = this.gridMap[this.gridRover.position.x][this.gridRover.position.y].y;
       this.gridRover.draw(roverCordsX, roverCordsY);
