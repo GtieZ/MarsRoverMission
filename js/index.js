@@ -1,3 +1,7 @@
 
+function setup(){
 
-alert('Hello world')
+  createCanvas(500, 500);
+  background(0);
+
+}
