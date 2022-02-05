@@ -15,12 +15,24 @@ class Cell {
 
 }
 
+  class Grid{
+    constructor(cellSize){
+      this.cellSize = cellSize;
+      this.myCell = new Cell (10, 10, cellSize);
+    }
+
+    draw(){
+      this.myCell.draw();
+    }
+
+  }
 
 
 
- let myCell = new Cell(10,10, 50);
- console.log(myCell)
 
+
+  myGrid = new Grid(50);
+  console.log(myGrid);
 
 
 function setup(){
@@ -28,9 +40,10 @@ function setup(){
   background(0);
 }
 
+
+
 function draw(){
 
-  myCell.draw();
-
+  myGrid.draw();
 
 }
