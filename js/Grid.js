@@ -14,25 +14,11 @@
       }
       for(let x = 0; x < this.gridSizeX; x++){
         for(let y = 0; y < this.gridSizeY; y++){
-
-          let blocked;
-          if(x!=0 && y!=0){
-            if(Math.random() > 0.93){
-              blocked = true;
-            } else{
-              blocked = false;
-            }
-          } else{
-            blocked = false;
-          }
-
-          this.gridMap[x][y] = new Cell(x*this.cellSize+this.posX, y*this.cellSize+this.posY, this.cellSize, blocked);
+          this.gridMap[x][y] = new Cell(x*this.cellSize+this.posX, y*this.cellSize+this.posY, this.cellSize, this.returnRandomObstacle(x, y));
         }
       }
-
       this.gridRover = new Rover(0, 0, this.cellSize);
     }
-
 
     driveRover(instruction){
       switch(instruction.toUpperCase()){
@@ -61,12 +47,36 @@
           break;
 
         default:
-          alert('error!!!!!');
+          alert('comando no válido');
           break;
       }
     }
 
-    
+    init(){
+      this.gridRover.position.set(0,0);
+      this.gridRover.direction.set(1,0);
+      for(let x = 0; x < this.gridSizeX; x++){
+        for(let y = 0; y < this.gridSizeY; y++){
+          this.gridMap[x][y].obstacle = this.returnRandomObstacle(x, y);
+        }
+      }
+
+    }
+
+    update(){
+      this.draw();
+      if(this.checkCollision()){
+        this.init();
+      }
+    }
+
+    checkCollision(){
+        if(this.gridMap[this.gridRover.position.x][this.gridRover.position.y].obstacle){
+          alert("colision!!!!!!");
+          return true;
+        }
+        return false;
+    }
 
     draw(){
       for(let x = 0; x < this.gridSizeX; x++){
@@ -79,8 +89,17 @@
       this.gridRover.draw(roverCordsX, roverCordsY);
     }
 
-
-
-
-
+    returnRandomObstacle(x, y){
+      let obstacle;
+      if(x!=0 && y!=0){
+        if(Math.random() > 0.93){
+          obstacle = true;
+        } else{
+          obstacle = false;
+        }
+      } else{
+        obstacle = false;
+      }
+      return obstacle;
+    }
   }

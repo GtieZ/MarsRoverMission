@@ -7,7 +7,7 @@ function setup(){
 
 function draw(){
   background(0);
-  marsWorld.draw();
+  marsWorld.update();
 }
 
 function keyTyped(){
