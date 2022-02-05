@@ -19,6 +19,8 @@
         }
       }
 
+      this.gridRover = new Rover(10, 5, this.cellSize);
+
     }
 
 
@@ -28,6 +30,10 @@
           this.gridMap[x][y].draw();
         }
       }
+
+      let roverCordsX = this.gridMap[this.gridRover.posX][this.gridRover.posY].x;
+      let roverCordsY = this.gridMap[this.gridRover.posX][this.gridRover.posY].y;
+      this.gridRover.draw(roverCordsX, roverCordsY);
     }
 
 

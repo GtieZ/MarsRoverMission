@@ -1,11 +1,12 @@
 
   //Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
-  marsWorld = new Grid(10, 10, 10, 8, 20);
+  marsWorld = new Grid(15, 20, 19, 10, 40);
   console.log(marsWorld);
 
 
+
 function setup(){
-  createCanvas(300, 300);
+  createCanvas(800, 500);
   background(0);
 }
 
@@ -14,5 +15,7 @@ function setup(){
 function draw(){
 
   marsWorld.draw();
+
+
 
 }
