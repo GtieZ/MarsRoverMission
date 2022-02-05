@@ -1,7 +1,7 @@
 
-
-  myGrid = new Grid(0, 0, 5, 5, 10);
-  console.log(myGrid);
+  //Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
+  marsWorld = new Grid(10, 10, 10, 8, 20);
+  console.log(marsWorld);
 
 
 function setup(){
@@ -13,6 +13,6 @@ function setup(){
 
 function draw(){
 
-  myGrid.draw();
+  marsWorld.draw();
 
 }
