@@ -7,9 +7,9 @@ class Cell {
   }
 
    draw(){
-     strokeWeight(1);
+    strokeWeight(1);
     stroke(255);
-    noFill(255);
+    noFill();
     rect(this.x,this.y, this.size, this.size);
   }
 

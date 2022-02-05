@@ -1,11 +1,11 @@
 
 
-  myGrid = new Grid(50);
+  myGrid = new Grid(0, 0, 5, 5, 10);
   console.log(myGrid);
 
 
 function setup(){
-  createCanvas(600, 600);
+  createCanvas(300, 300);
   background(0);
 }
 
