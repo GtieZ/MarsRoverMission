@@ -1,19 +1,34 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <script src="./js/p5.min.js"></script>
+    <script src="./js/p5/p5.min.js"></script>
+    <script src="./js/p5/p5.sound.min.js" ></script>
     <script src="./js/preload.js"></script>
     <script src="./js/Rover.js"></script>
     <script src="./js/Cell.js"></script>
     <script src="./js/Grid.js"></script>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/index.css">
+
     <meta charset="utf-8">
     <title>MarsRoverMission</title>
   </head>
   <body>
+    <h1>MARS ROVER MISSION</h1>
+    <div class="container">
+      <form onsubmit="onSubmit(event)">
+        <label for="instructions">Instructions:</label>
+        <input type="text"  placeholder="Enter rover instructions..." id="instructions">
+        <button type="submit" name="button">ok</button>
+      </form>
 
-
-
+      <div class="board-display">
+        <h2 id="board"></h2>
+      </div>
+    </div>
 
     <script src="./js/index.js"></script>
   </body>

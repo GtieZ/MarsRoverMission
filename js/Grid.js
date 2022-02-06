@@ -67,12 +67,15 @@
       this.draw();
       if(this.checkCollision()){
         this.init();
+      } else{
+        success.play();
       }
     }
 
     checkCollision(){
         if(this.gridMap[this.gridRover.position.x][this.gridRover.position.y].obstacle){
-          alert("colision!!!!!!");
+          alarm.play();
+          //alert("colision!!!!!!");
           return true;
         }
         return false;
