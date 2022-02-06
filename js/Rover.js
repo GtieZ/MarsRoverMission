@@ -3,6 +3,7 @@ class Rover{
     this.position = new p5.Vector(posX, posY);
     this.direction = new p5.Vector(1, 0);
     this.size = size;
+    this.previousPosition = new p5.Vector(posX, posY);
   }
 
   moveForward(){
@@ -43,7 +44,6 @@ class Rover{
   draw(x, y){
     let xCord, yCord;
     imageMode(CENTER);
-
     push();
     if(this.direction.x < 0){
       scale(-1,1);
@@ -52,7 +52,6 @@ class Rover{
     else{
       xCord = x+this.size/2;
     }
-
     translate(xCord, y + this.size/2);
     if(this.direction.y == 1){
       rotate(PI/2);
@@ -60,11 +59,8 @@ class Rover{
     if(this.direction.y == -1){
       rotate(-PI/2);
     }
-
     image(roverIcon, 0, 0, this.size, this.size);
     pop();
   }
-
-
 
 }

@@ -9,6 +9,9 @@
       this.gridMap = [];
       this.cellSize = cellSize;
 
+      this.collision = false;
+      this.invalid = false;
+
       for(let x=0; x<this.gridSizeX; x++){
         this.gridMap[x] = new Array(this.gridSizeY);
       }
@@ -21,6 +24,7 @@
     }
 
     driveRover(instruction){
+      this.gridRover.previousPosition.set(this.gridRover.position.x, this.gridRover.position.y);
       switch(instruction.toUpperCase()){
         case 'F':
           this.gridRover.moveForward();
@@ -40,45 +44,49 @@
 
         case 'L':
           this.gridRover.changeDirection('L');
+          this.driveRover('F');
           break;
 
         case 'R':
           this.gridRover.changeDirection('R');
+          this.driveRover('F');
           break;
 
         default:
-          alert('comando no válido');
+          this.invalid = true;
           break;
       }
     }
 
     init(){
-      this.gridRover.position.set(0,0);
-      this.gridRover.direction.set(1,0);
-      for(let x = 0; x < this.gridSizeX; x++){
-        for(let y = 0; y < this.gridSizeY; y++){
-          this.gridMap[x][y].obstacle = this.returnRandomObstacle(x, y);
-        }
-      }
-
+      this.collision = false;
+      this.invalid = false;
     }
 
     update(){
+      this.checkCollision();
       this.draw();
-      if(this.checkCollision()){
-        this.init();
-      } else{
-        success.play();
-      }
     }
 
     checkCollision(){
         if(this.gridMap[this.gridRover.position.x][this.gridRover.position.y].obstacle){
-          alarm.play();
-          //alert("colision!!!!!!");
-          return true;
+          this.collision = true;
         }
-        return false;
+    }
+
+    getLocalizationMsg(){
+      let str1 = "Mars rover is at cordinates (";
+      let str2 = ", ";
+      let str3 = ") facing to ";
+      let str4 = ".";
+      let cords;
+      if(this.gridRover.direction.x == 1) cords = "East";
+      if(this.gridRover.direction.x == -1) cords = "West";
+      if(this.gridRover.direction.y == 1) cords = "South";
+      if(this.gridRover.direction.y == -1) cords = "North";
+
+      let message = str1+this.gridRover.position.x.toString()+str2+this.gridRover.position.y.toString()+str3+cords+str4;
+      return message;
     }
 
     draw(){

@@ -19,15 +19,30 @@
   <body>
     <h1>MARS ROVER MISSION</h1>
     <div class="container">
-      <form onsubmit="onSubmit(event)">
-        <label for="instructions">Instructions:</label>
-        <input type="text"  placeholder="Enter rover instructions..." id="instructions">
+      <form onsubmit="onSubmit(event)" class="commands">
+        <label for="instructions">Commands:</label>
+        <input type="text"  placeholder="Enter rover commands..." id="commands">
         <button type="submit" name="button">ok</button>
       </form>
 
+      <p id="cords"></p>
       <div class="board-display">
         <h2 id="board"></h2>
       </div>
+
+      <div id="errorMessage"></div>
+      <hr>
+
+      <div class="rules">
+        <h3>Instructions:</h3>
+        <ul class="instructions">
+          <li>The rover receives a collection of commands. <br> (E.g.) FFRRFFFRL. </li>
+          <li>The rover can move FORWARD (F).</li>
+          <li>The rover can move LEFT/RIGHT (L,R).</li>
+          <li>Other commands are invalid.</li>
+        </ul>
+      </div>
+
     </div>
 
     <script src="./js/index.js"></script>

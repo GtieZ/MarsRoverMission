@@ -1,9 +1,16 @@
 
 //Grid(posX, posY, gridSizeX, gridSizeY, cellSize)
-let marsWorld = new Grid(15, 20, 19, 14, 40);
+let marsWorld = new Grid(20, 20, 19, 14, 40);
 let board = document.getElementById("board");
+let error = document.getElementById("errorMessage");
+let cords = document.getElementById("cords");
+
+function keyTyped(){
+  userStartAudio();
+}
 
 function setup(){
+  cords.innerHTML = marsWorld.getLocalizationMsg();
   createCanvas(800, 600);
   noLoop();
 }
@@ -13,49 +20,42 @@ function draw(){
   marsWorld.update();
 }
 
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 function processChar(letter, index){
   board.innerHTML = index+1 + ": " + letter.toUpperCase();
   marsWorld.driveRover(letter);
   draw();
 }
 
-
-
-
-
-
-function onSubmit(event){
+async function onSubmit(event){
   event.preventDefault();
-  let instructions = document.getElementById("instructions").value;
+  error.innerHTML = "";
+  let commands = document.getElementById("commands").value;
 
-  [...instructions].forEach((letter, index) => {
-    setTimeout(processChar, 1000*index, letter, index);
-  });
-
-
-  console.log(instructions);
-}
-
-
-
-
-
-
-
-
-
-
-
-function keyTyped(){
-  userStartAudio();
-
-  if(keyCode == ENTER){
-    marsWorld.driveRover('f');
+  for(let i=0; i < commands.length; i++){
+    processChar(commands[i], i);
+    if(marsWorld.collision || marsWorld.invalid){
+      alarm.play();
+      break;
+    }
+    success.play();
+    cords.innerHTML = marsWorld.getLocalizationMsg();
+    await sleep(1000);
   }
-  if(key == 'q'){
-    marsWorld.driveRover('l');
+
+  if(marsWorld.invalid){
+    error.innerHTML = "MISSION ABORTED: Invalid command!"
   }
-  if(key == "w"){
-    marsWorld.driveRover('r');
+  if(marsWorld.collision){
+    error.innerHTML ="MISSION ABORTED: Obstacle Found!"
+
+    marsWorld.gridRover.position.set(marsWorld.gridRover.previousPosition.x, marsWorld.gridRover.previousPosition.y);
+    draw();
   }
+
+  marsWorld.init();
+  cords.innerHTML = marsWorld.getLocalizationMsg();
 }
